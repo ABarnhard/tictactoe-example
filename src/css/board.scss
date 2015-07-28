@@ -1,0 +1,76 @@
+.board {
+  width: 60vm; /* for older IE */
+  width: 60vmin;
+  height: 60vm; /* for older IE */
+  height: 60vmin;
+  position: absolute;
+  top: 15vm; /* for older IE */
+  top: 15vmin;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  .square {
+    display: block;
+    float: left;
+    margin: 0;
+    width: 33%;
+    height: 33%;
+    position: relative;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    box-sizing: border-box;
+
+    .icon {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      display: none;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &.o {
+      .icon {
+        &.o {
+          display: block;
+        }
+      }
+    }
+
+    &.x {
+      .icon {
+        &.x {
+          display: block;
+        }
+      }
+    }
+    &.open {
+      cursor: pointer;
+      @media (min-width: 1024px) {
+        &:hover {
+          .icon {
+            &.x {
+              display: block;
+              line {
+                stroke: #ccc;
+              }
+            }
+          }    
+        }        
+      }
+    }
+    
+
+    &:nth-child(3n) {
+      border-right: none;
+    }
+
+    @for $i from 7 to 10 {
+      &:nth-child(#{$i}) {
+        border-bottom: none;
+      }
+    }
+  }
+}
